@@ -1,0 +1,13 @@
+./agenda dynamic-ss --algo lazyup --epsilon 0.5 --prefix ../data/ --dataset Orkut --query_size 100 --update_size 100 --beta 1 --with_idx
+./agenda dynamic-ss-queue-workload --algo lazyup --epsilon 0.5 --prefix ../data/ --dataset LJ --query_arrRate 0.1 --update_arrRate 0.1 --queue_time 1000 --beta 1 --with_idx
+./agenda dynamic-ss-test-vic-num --algo lazyup --epsilon 0.5 --prefix ../data/ --dataset LJ --query_arrRate 0 --update_arrRate 1 --queue_time 30 --beta 1 --degree_shuffling_PFS 5 --with_idx
+./agenda dynamic-ss-queue-workload-parallel --algo lazyup --epsilon 0.5 --prefix ../data/ --dataset LJ --query_arrRate 0.1 --update_arrRate 0.1 --queue_time 1000 --beta 1 --with_idx --total_worker_num 10
+./agenda dynamic-ss-queue-workload-parallel-shuffling --algo lazyup --epsilon 0.5 --prefix ../data/ --dataset LJ --query_arrRate 0.1 --update_arrRate 0.1 --queue_time 1000 --beta 1 --with_idx --total_worker_num 9 --total_shuffling_controller_num 1
+
+./agenda build --prefix ../data/ --dataset LJ --epsilon 0.5 --baton
+
+nohup bash run_dataset_parallel.sh &
+
+
+./agenda dynamic-ss-queue-workload-parallel-shuffling --algo lazyup --epsilon 0.5 --prefix ../data/ --dataset webstanford --query_arrRate 0.1 --update_arrRate 0.1 --queue_time 1000 --beta 1 --with_idx --total_worker_num 4 --total_shuffling_controller_num 1
+./agenda dynamic-ss-queue-workload-parallel --algo lazyup --epsilon 0.5 --prefix ../data/ --dataset LJ --query_arrRate 0.1 --update_arrRate 0.1 --queue_time 1000 --beta 1 --with_idx --total_worker_num 20 --total_shuffling_controller_num 1
